@@ -1,0 +1,38 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Refund extends Model
+{
+    protected $table = 'refund';
+
+    protected $fillable = [
+        'user_id',
+        'admin_id',
+        'step_id',
+        'amount',
+        'money_amount',
+        'quote',
+        'bank',
+        'account',
+        'holder',
+        'header_info',
+        'ip',
+        'delete'
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function refundstep()
+    {
+        return $this->belongsTo(RefundStep::class, 'step_id');
+    }
+}
